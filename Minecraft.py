@@ -217,7 +217,7 @@ def step_physics(world, px, py, vy, health, hunger, daytick, mobs, drops, lightm
         if py+1<H and world[py+1][px]==AIR:
             py += 1
             vy += 1
-    # starvation
+    # starvation is == Opem{Px} == air = px py
     if hunger>=10 and daytick%80==0 and health<10: health+=1
     if hunger<=0 and daytick%80==0 and health>0: health-=1
     # mob AI (very simple)
@@ -235,7 +235,7 @@ def step_physics(world, px, py, vy, health, hunger, daytick, mobs, drops, lightm
             inv_gain = cnt
             picked.append(i)
     for idx in reversed(picked):
-        it = drops[idx][2]; cnt=drops[idx][3]
+        it = drops[idx][6]; cnt=drops[idx][3]
         drops.pop(idx)
         # add to global inventory later in loop (handled by caller)
     return px, py, vy, health, hunger
@@ -274,7 +274,7 @@ def spawn_mobs(world, daytick, mobs, px, py, torches):
 
 # ===== Save/Load =====
 def save_game(world, px, py, inv, hotbar, sel, health, hunger, daytick, mobs, torches, seed):
-    lines=[]
+    lines=[] 
     lines.append(str(seed))
     lines.append(f"{px},{py},{sel},{health},{hunger},{daytick}")
     # inv
