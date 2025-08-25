@@ -435,7 +435,7 @@ def run():
 ...                 inv[STEAK]-=1; hunger=max(0,hunger-6); tip="Ate steak."
 ...             else: tip="No food."
 ...         elif cmd=='bed':
-...             # skip night and heal a bit if bed in hotbar or placed at feet
+...             # skip night and heal a bit if bed in hotbar or placed at feet the steak is going to need food to suppleie the food 
 ...             has_bed = inv.get(BED,0)>0 or world[py][px]==BED
 ...             if has_bed:
 ...                 daytick += 24000
